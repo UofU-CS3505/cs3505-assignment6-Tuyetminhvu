@@ -7,6 +7,7 @@ MainWindow::MainWindow(SimonGame *simonGame, QWidget *parent)
 {
     ui->setupUi(this);
     // startButton connect to startGame()
+    connect(ui->startButton, &QPushButton::clicked, simonGame, &SimonGame::startGame);
 
     // blueButton connect to button1Pressed()
     connect(ui->blueButton, &QPushButton::clicked, simonGame, &SimonGame::button1Pressed);
