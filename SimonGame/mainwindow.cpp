@@ -6,6 +6,13 @@ MainWindow::MainWindow(SimonGame *simonGame, QWidget *parent)
     , simonGame(simonGame)
 {
     ui->setupUi(this);
+    // startButton connect to startGame()
+
+    // blueButton connect to button1Pressed()
+    connect(ui->blueButton, &QPushButton::clicked, simonGame, &SimonGame::button1Pressed);
+
+    // redButton connect to button2Pressed()
+    connect(ui->redButton, &QPushButton::clicked, simonGame, &SimonGame::button2Pressed);
 }
 
 MainWindow::~MainWindow()
