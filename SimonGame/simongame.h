@@ -3,11 +3,11 @@
 
 #include <QObject>
 
-class simonGame : public QObject
+class SimonGame : public QObject
 {
     Q_OBJECT
 public:
-    explicit simonGame(QObject *parent = nullptr);
+    explicit SimonGame(QObject *parent = nullptr);
 
 signals:
 };
