@@ -1,5 +1,5 @@
 #include "simongame.h"
 
-simonGame::simonGame(QObject *parent)
+SimonGame::SimonGame(QObject *parent)
     : QObject{parent}
 {}
