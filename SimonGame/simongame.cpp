@@ -13,6 +13,7 @@ void SimonGame::startGame(){
 // THEN ENABLE THEM AFTER playSequence()
 void SimonGame::button1Pressed(){
     if (numberSequence[sequenceIndex] == 1){
+        sequenceIndex++;
         numberSequence.append(getRandomNumber());
         playSequence(0);
     } else {
@@ -24,6 +25,7 @@ void SimonGame::button1Pressed(){
 
 void SimonGame::button2Pressed(){
     if (numberSequence[sequenceIndex] == 2){
+        sequenceIndex++;
         numberSequence.append(getRandomNumber());
         playSequence(0);
     } else {
