@@ -5,27 +5,31 @@ SimonGame::SimonGame(QObject *parent)
 {}
 
 void SimonGame::startGame(){
-    buttonSequence.append(getRandomNumber());
+    numberSequence.append(getRandomNumber());
     playSequence(0);
 }
 
+// SHOULD DISABLE BUTTONS AFTER A BUTTON IS PRESSED,
+// THEN ENABLE THEM AFTER playSequence()
 void SimonGame::button1Pressed(){
-    if (buttonSequence[sequenceIndex] == 1){
-        buttonSequence.append(getRandomNumber());
+    if (numberSequence[sequenceIndex] == 1){
+        numberSequence.append(getRandomNumber());
         playSequence(0);
     } else {
         // Game over
-        buttonSequence.clear();
+        numberSequence.clear();
+        sequenceIndex = 0;
     }
 }
 
 void SimonGame::button2Pressed(){
-    if (buttonSequence[sequenceIndex] == 2){
-        buttonSequence.append(getRandomNumber());
+    if (numberSequence[sequenceIndex] == 2){
+        numberSequence.append(getRandomNumber());
         playSequence(0);
     } else {
         // Game over
-        buttonSequence.clear();
+        numberSequence.clear();
+        sequenceIndex = 0;
     }
 }
 
@@ -36,9 +40,9 @@ int SimonGame::getRandomNumber(){
 void SimonGame::playSequence(int index)
 {
     // Base case, return when last index is reached
-    if (index >= buttonSequence.size()) return;
+    if (index >= numberSequence.size()) return;
 
-    if (buttonSequence[index] == 1)
+    if (numberSequence[index] == 1)
         emit flashButton1();
     else
         emit flashButton2();

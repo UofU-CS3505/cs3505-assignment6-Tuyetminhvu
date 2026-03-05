@@ -42,7 +42,7 @@ private:
      * @brief buttonSequence
      * vector to hold the sequence of numbers (1 or 2)
      */
-    QVector<int> buttonSequence;
+    QVector<int> numberSequence;
 
     /**
      * @brief sequenceIndex
