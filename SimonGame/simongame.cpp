@@ -5,7 +5,8 @@ SimonGame::SimonGame(QObject *parent)
 {}
 
 void SimonGame::startGame(){
-    emit disableButtons();
+    emit enablePlayerButtons(false);
+    emit enableStartButton(false);
     numberSequence.clear();
     sequenceIndex = 0;
     numberSequence.append(getRandomNumber());
@@ -13,7 +14,8 @@ void SimonGame::startGame(){
 }
 
 void SimonGame::gameOver(){
-    emit disableButtons();
+    emit enablePlayerButtons(false);
+    emit enableStartButton(true);
 }
 
 // TODO: SHOULD DISABLE BUTTONS AFTER FINAL BUTTON IN SEQUENCE IS PRESSED,
@@ -33,11 +35,11 @@ void SimonGame::handleButtonPressed(int button){
         // When the final element in the sequence is reached,
         // reset index, add new element, and play back the sequence.
         if (sequenceIndex >= numberSequence.size()){
-            emit disableButtons();
+            emit enablePlayerButtons(false);
             sequenceIndex = 0;
 
             numberSequence.append(getRandomNumber());
-            QTimer::singleShot(500, this, [=]() {playSequence(0);});
+            QTimer::singleShot(2000, this, [=]() {playSequence(0);});
         }
     } else {
         gameOver();
@@ -52,14 +54,18 @@ void SimonGame::playSequence(int index)
 {
     // Base case, return when last index is reached
     if (index >= numberSequence.size()){
-        emit enableButtons();
+        emit enablePlayerButtons(true);
         return;
     }
 
-    if (numberSequence[index] == 1)
-        emit flashButton1();
-    else
-        emit flashButton2();
+    // length of time to flash and time for singleShot, increases with size of sequence
+    int timer = 1000 - (numberSequence.size() * 20 );
 
-    QTimer::singleShot(500, this, [=]() {playSequence(index + 1);});
+    if (numberSequence[index] == 1)
+        emit flashButton1(timer * 0.9);
+    else
+        emit flashButton2(timer * 0.9);
+
+
+    QTimer::singleShot(timer, this, [=]() {playSequence(index + 1);});
 }

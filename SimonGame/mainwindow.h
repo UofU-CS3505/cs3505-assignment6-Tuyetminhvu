@@ -19,10 +19,10 @@ public:
     ~MainWindow();
 
 public slots:
-    void disableColorButtons();
-    void enableColorButtons();
-    void flashRed();
-    void flashBlue();
+    void enableStartButton(bool);
+    void enableColorButtons(bool);
+    void flashRed(int timer);
+    void flashBlue(int timer);
 
 private:
     Ui::MainWindow *ui;

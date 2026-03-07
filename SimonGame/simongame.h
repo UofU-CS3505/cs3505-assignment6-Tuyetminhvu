@@ -34,10 +34,10 @@ public slots:
     void button2Pressed();
 
 signals:
-    void flashButton1();
-    void flashButton2();
-    void disableButtons();
-    void enableButtons();
+    void flashButton1(int);
+    void flashButton2(int);
+    void enablePlayerButtons(bool);
+    void enableStartButton(bool);
 
 private:
     /**
