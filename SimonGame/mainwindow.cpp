@@ -15,16 +15,16 @@ MainWindow::MainWindow(SimonGame *simonGame, QWidget *parent)
     // redButton connect to button2Pressed()
     connect(ui->redButton, &QPushButton::clicked, simonGame, &SimonGame::button2Pressed);
 
-    //
+    // signal disableButtons from simonGame -> slot disableColorButtons in MainWindow
     connect(simonGame, &SimonGame::disableButtons, this, &MainWindow::disableColorButtons);
 
-    //
+    // enable buttons
     connect(simonGame, &SimonGame::enableButtons, this, &MainWindow::enableColorButtons);
 
-    //
+    // flash button1 which should be red
     connect(simonGame, &SimonGame::flashButton1, this, &MainWindow::flashRed);
 
-    //
+    // flash button2 which should be blue
     connect(simonGame, &SimonGame::flashButton2, this, &MainWindow::flashBlue);
 }
 
