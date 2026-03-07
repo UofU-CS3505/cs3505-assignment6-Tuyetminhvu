@@ -40,6 +40,8 @@ signals:
     void enableStartButton(bool);
     void gameOverSignal(bool);
     void gameOverHideColorButtons(bool);
+    void levelUpdated(int level);
+    void scoreUpdated(int score);
 
 private:
     /**
@@ -84,6 +86,25 @@ private:
      * @param index Starts at the index passed by parameter
      */
     void playSequence(int index);
+
+    /**
+     * @brief updateGameLevel
+     * Method to update game level
+     * @param level
+     */
+    int updateGameLevel();
+
+    /**
+     * @brief updateGameScore
+     * Method to update game score
+     * @return
+     */
+    int updateGameScore();
+
+    /**
+     * @brief score
+     */
+    int score = 0;
 
 };
 

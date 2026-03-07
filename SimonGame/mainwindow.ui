@@ -514,7 +514,7 @@ font: 900 25pt &quot;Phosphate&quot;;
      <string>RED</string>
     </property>
    </widget>
-   <widget class="QLabel" name="gameLevel">
+   <widget class="QLabel" name="gameLevelLabel">
     <property name="geometry">
      <rect>
       <x>120</x>
@@ -530,7 +530,7 @@ font: 900 25pt &quot;Phosphate&quot;;
      <string>LEVEL:</string>
     </property>
    </widget>
-   <widget class="QLabel" name="gameScore">
+   <widget class="QLabel" name="gameScoreLabel">
     <property name="geometry">
      <rect>
       <x>120</x>
@@ -546,26 +546,6 @@ font: 900 25pt &quot;Phosphate&quot;;
      <string>SCORE:</string>
     </property>
    </widget>
-   <widget class="QTextBrowser" name="textBrowser">
-    <property name="geometry">
-     <rect>
-      <x>200</x>
-      <y>60</y>
-      <width>121</width>
-      <height>21</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QTextBrowser" name="textBrowser_2">
-    <property name="geometry">
-     <rect>
-      <x>200</x>
-      <y>100</y>
-      <width>121</width>
-      <height>21</height>
-     </rect>
-    </property>
-   </widget>
    <widget class="QPushButton" name="startButton">
     <property name="geometry">
      <rect>
@@ -575,8 +555,11 @@ font: 900 25pt &quot;Phosphate&quot;;
       <height>51</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">font: 900 13pt &quot;Arial Black&quot;;</string>
+    </property>
     <property name="text">
-     <string>Start Game</string>
+     <string>START GAME</string>
     </property>
    </widget>
    <widget class="QLabel" name="gameOverLabel">
@@ -590,6 +573,44 @@ font: 900 25pt &quot;Phosphate&quot;;
     </property>
     <property name="text">
      <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="currentLevel">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>190</x>
+      <y>60</y>
+      <width>61</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 900 20
+
+pt &quot;Arial Black&quot;;</string>
+    </property>
+    <property name="text">
+     <string>0</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="currentScore">
+    <property name="geometry">
+     <rect>
+      <x>190</x>
+      <y>100</y>
+      <width>61</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 900 20
+pt &quot;Arial Black&quot;;</string>
+    </property>
+    <property name="text">
+     <string>0</string>
     </property>
    </widget>
   </widget>

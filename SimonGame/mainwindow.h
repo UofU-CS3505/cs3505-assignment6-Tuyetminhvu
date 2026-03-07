@@ -25,6 +25,8 @@ public slots:
     void flashBlue(int timer);
     void showGameOverGif(bool show);
     void showColorButtons(bool show);
+    void currentLevelLabel(int level);
+    void currentScoreLabel(int score);
 
 private:
     Ui::MainWindow *ui;

@@ -12,7 +12,10 @@ void SimonGame::startGame(){
 
     numberSequence.clear();
     sequenceIndex = 0;
+    score = 0;
+    emit scoreUpdated(score);
     numberSequence.append(getRandomNumber());
+    updateGameLevel();
     playSequence(0);
 }
 
@@ -23,8 +26,6 @@ void SimonGame::gameOver(){
     emit gameOverHideColorButtons(false);
 }
 
-// TODO: SHOULD DISABLE BUTTONS AFTER FINAL BUTTON IN SEQUENCE IS PRESSED,
-// THEN ENABLE THEM AFTER playSequence() IS FINISHED
 void SimonGame::button1Pressed(){
     handleButtonPressed(1);
 }
@@ -32,11 +33,16 @@ void SimonGame::button1Pressed(){
 void SimonGame::button2Pressed(){
     handleButtonPressed(2);
 }
+
 void SimonGame::handleButtonPressed(int button){
     if (numberSequence.isEmpty()) return;
 
     if (numberSequence[sequenceIndex] == button){
+        score += 10;
+        emit scoreUpdated(score);
+
         sequenceIndex++;
+        updateGameScore();
 
         // When the final element in the sequence is reached,
         // reset index, add new element, and play back the sequence.
@@ -45,6 +51,7 @@ void SimonGame::handleButtonPressed(int button){
             sequenceIndex = 0;
 
             numberSequence.append(getRandomNumber());
+            updateGameLevel();
             QTimer::singleShot(2000, this, [=]() {playSequence(0);});
         }
     } else {
@@ -74,4 +81,15 @@ void SimonGame::playSequence(int index)
 
 
     QTimer::singleShot(timer, this, [=]() {playSequence(index + 1);});
+}
+
+int SimonGame::updateGameLevel(){
+    int level = numberSequence.size();
+    emit levelUpdated(level);
+    return level;
+}
+
+int SimonGame::updateGameScore(){
+    emit scoreUpdated(score);
+    return score;
 }

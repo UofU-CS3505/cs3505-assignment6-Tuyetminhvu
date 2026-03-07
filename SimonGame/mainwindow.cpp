@@ -37,8 +37,12 @@ MainWindow::MainWindow(SimonGame *simonGame, QWidget *parent)
     //Game over gif 
     connect(simonGame, &SimonGame::gameOverSignal,this, &MainWindow::showGameOverGif);
 
-    //Color button should be hide
+    // Enable or disable the color buttons based on game state
     connect(simonGame, &SimonGame::gameOverHideColorButtons,this, &MainWindow::showColorButtons);
+
+    connect(simonGame, &SimonGame::levelUpdated, this, &MainWindow::currentLevelLabel);
+
+    connect(simonGame, &SimonGame::scoreUpdated, this, &MainWindow::currentScoreLabel);
 }
 
 MainWindow::~MainWindow()
@@ -83,6 +87,14 @@ void MainWindow::showGameOverGif(bool isShow)
         ui->gameOverLabel->hide();
         gameOverMovie->stop();
     }
+}
+
+void MainWindow::currentLevelLabel(int level){
+    ui->currentLevel->setText(QString::number(level));
+}
+
+void MainWindow::currentScoreLabel(int level){
+    ui->currentScore->setText(QString::number(level));
 }
 
 void MainWindow::flashRed(int timer){
