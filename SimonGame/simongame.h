@@ -51,6 +51,14 @@ private:
     int sequenceIndex = 0;
 
     /**
+     * @brief handleButtonPressed
+     * Helper method for button1Pressed and button2Pressed
+     * to handle the logic after a button is pressed
+     * @param button , The button pressed (1 or 2)
+     */
+    void handleButtonPressed(int button);
+
+    /**
      * @brief getRandomNumber
      * A helper method to get a random
      * number (1 or 2) to add to the number sequence.
