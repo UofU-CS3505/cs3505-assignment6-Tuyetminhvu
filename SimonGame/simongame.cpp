@@ -7,6 +7,7 @@ SimonGame::SimonGame(QObject *parent)
 void SimonGame::startGame(){
     emit enablePlayerButtons(false);
     emit enableStartButton(false);
+    emit userTurnSignal(false);
     emit gameOverSignal(false);
     emit gameOverHideColorButtons(true);
 
@@ -24,6 +25,7 @@ void SimonGame::gameOver(){
     emit enableStartButton(true);
     emit gameOverSignal(true);
     emit gameOverHideColorButtons(false);
+    emit userTurnSignal(false);
 }
 
 void SimonGame::button1Pressed(){
@@ -48,6 +50,7 @@ void SimonGame::handleButtonPressed(int button){
         // reset index, add new element, and play back the sequence.
         if (sequenceIndex >= numberSequence.size()){
             emit enablePlayerButtons(false);
+            emit userTurnSignal(false);
             sequenceIndex = 0;
 
             numberSequence.append(getRandomNumber());
@@ -68,6 +71,7 @@ void SimonGame::playSequence(int index)
     // Base case, return when last index is reached
     if (index >= numberSequence.size()){
         emit enablePlayerButtons(true);
+        emit userTurnSignal(true);
         return;
     }
 

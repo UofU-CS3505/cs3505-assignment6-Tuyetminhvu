@@ -1,5 +1,7 @@
 <RCC>
     <qresource prefix="/">
         <file>gameover.gif</file>
+        <file>yourturn.gif</file>
+        <file>lose.gif</file>
     </qresource>
 </RCC>

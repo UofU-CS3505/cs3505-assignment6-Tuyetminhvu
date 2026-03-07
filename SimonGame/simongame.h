@@ -42,6 +42,7 @@ signals:
     void gameOverHideColorButtons(bool);
     void levelUpdated(int level);
     void scoreUpdated(int score);
+    void userTurnSignal(bool);
 
 private:
     /**

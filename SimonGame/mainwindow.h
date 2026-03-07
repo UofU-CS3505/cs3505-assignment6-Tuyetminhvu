@@ -27,10 +27,13 @@ public slots:
     void showColorButtons(bool show);
     void currentLevelLabel(int level);
     void currentScoreLabel(int score);
+    void showUserTurnGif(bool show);
 
 private:
     Ui::MainWindow *ui;
     SimonGame *simonGame;
     QMovie *gameOverMovie;
+    QMovie *userTurnMovie;
+    QMovie *loseGameMovie;
 };
 #endif // MAINWINDOW_H

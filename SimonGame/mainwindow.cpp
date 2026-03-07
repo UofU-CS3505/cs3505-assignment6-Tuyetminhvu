@@ -14,6 +14,16 @@ MainWindow::MainWindow(SimonGame *simonGame, QWidget *parent)
     ui->gameOverLabel->setMovie(gameOverMovie);
     ui->gameOverLabel->hide();   // hide at start
 
+    userTurnMovie = new QMovie(":/yourturn.gif");
+
+    ui->userTurnLabel->setMovie(userTurnMovie);
+    ui->userTurnLabel->hide();   // hide at start
+
+    loseGameMovie = new QMovie(":/lose.gif");
+
+    ui->loseGameLabel->setMovie(loseGameMovie);
+    ui->loseGameLabel->hide();   // hide at start
+
     // startButton connect to startGame()
     connect(ui->startButton, &QPushButton::clicked, simonGame, &SimonGame::startGame);
 
@@ -37,11 +47,16 @@ MainWindow::MainWindow(SimonGame *simonGame, QWidget *parent)
     //Game over gif 
     connect(simonGame, &SimonGame::gameOverSignal,this, &MainWindow::showGameOverGif);
 
-    // Enable or disable the color buttons based on game state
+    //User turn gif
+    connect(simonGame, &SimonGame::userTurnSignal,this, &MainWindow::showUserTurnGif);
+
+    // show or hide the color buttons based on game state
     connect(simonGame, &SimonGame::gameOverHideColorButtons,this, &MainWindow::showColorButtons);
 
+    //update the level
     connect(simonGame, &SimonGame::levelUpdated, this, &MainWindow::currentLevelLabel);
 
+    //update the score
     connect(simonGame, &SimonGame::scoreUpdated, this, &MainWindow::currentScoreLabel);
 }
 
@@ -49,11 +64,6 @@ MainWindow::~MainWindow()
 {
     delete ui;
 }
-
-// void MainWindow::on_blueButton_clicked()
-// {
-
-// }
 
 void MainWindow::enableColorButtons(bool isEnabled){
     ui->redButton->setEnabled(isEnabled);
@@ -80,12 +90,29 @@ void MainWindow::showGameOverGif(bool isShow)
 {
     if(isShow){
         ui->gameOverLabel->show();
+        ui->loseGameLabel->show();
         gameOverMovie->start();
+        loseGameMovie ->start();
     }
 
     else{
         ui->gameOverLabel->hide();
+        ui->loseGameLabel->hide();
         gameOverMovie->stop();
+        loseGameMovie ->stop();
+    }
+}
+
+void MainWindow::showUserTurnGif(bool isShow)
+{
+    if(isShow){
+        ui->userTurnLabel->show();
+        userTurnMovie->start();
+    }
+
+    else{
+        ui->userTurnLabel->hide();
+        userTurnMovie->stop();
     }
 }
 
