@@ -36,6 +36,8 @@ public slots:
 signals:
     void flashButton1();
     void flashButton2();
+    void disableButtons();
+    void enableButtons();
 
 private:
     /**

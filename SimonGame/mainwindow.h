@@ -18,6 +18,12 @@ public:
     MainWindow(SimonGame *simonGame, QWidget *parent = nullptr);
     ~MainWindow();
 
+public slots:
+    void disableColorButtons();
+    void enableColorButtons();
+    void flashRed();
+    void flashBlue();
+
 private:
     Ui::MainWindow *ui;
     SimonGame *simonGame;
