@@ -3,5 +3,6 @@
         <file>gameover.gif</file>
         <file>yourturn.gif</file>
         <file>lose.gif</file>
+        <file>bgmusic.mp3</file>
     </qresource>
 </RCC>

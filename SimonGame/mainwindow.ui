@@ -588,7 +588,7 @@ font: 900 25pt &quot;Phosphate&quot;;
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">font: 900 20
+     <string notr="true">font: 900 21
 
 pt &quot;Arial Black&quot;;</string>
     </property>
@@ -629,8 +629,8 @@ pt &quot;Arial Black&quot;;</string>
    <widget class="QLabel" name="loseGameLabel">
     <property name="geometry">
      <rect>
-      <x>360</x>
-      <y>20</y>
+      <x>300</x>
+      <y>30</y>
       <width>251</width>
       <height>151</height>
      </rect>

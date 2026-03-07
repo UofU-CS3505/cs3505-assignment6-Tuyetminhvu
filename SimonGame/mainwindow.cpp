@@ -2,6 +2,8 @@
 #include "ui_mainwindow.h"
 #include "simongame.h"
 #include<QMovie>
+#include<QMediaPlayer>
+#include<QAudioOutput>
 
 MainWindow::MainWindow(SimonGame *simonGame, QWidget *parent)
     : QMainWindow(parent), ui(new Ui::MainWindow)
@@ -23,6 +25,13 @@ MainWindow::MainWindow(SimonGame *simonGame, QWidget *parent)
 
     ui->loseGameLabel->setMovie(loseGameMovie);
     ui->loseGameLabel->hide();   // hide at start
+
+    bgMusic = new QMediaPlayer(this);
+    QAudioOutput* audioOutput = new QAudioOutput(this);
+    bgMusic->setAudioOutput(audioOutput);
+    bgMusic->setSource(QUrl("qrc:/bgmusic.mp3"));
+    bgMusic->setLoops(QMediaPlayer::Infinite);
+    bgMusic->play();
 
     // startButton connect to startGame()
     connect(ui->startButton, &QPushButton::clicked, simonGame, &SimonGame::startGame);
@@ -97,7 +106,7 @@ void MainWindow::showGameOverGif(bool isShow)
 
     else{
         ui->gameOverLabel->hide();
-        ui->loseGameLabel->hide();
+         ui->loseGameLabel->hide();
         gameOverMovie->stop();
         loseGameMovie ->stop();
     }

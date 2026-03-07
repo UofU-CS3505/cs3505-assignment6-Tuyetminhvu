@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include "simongame.h"
+#include<QMediaPlayer>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -35,5 +36,6 @@ private:
     QMovie *gameOverMovie;
     QMovie *userTurnMovie;
     QMovie *loseGameMovie;
+    QMediaPlayer *bgMusic;
 };
 #endif // MAINWINDOW_H
