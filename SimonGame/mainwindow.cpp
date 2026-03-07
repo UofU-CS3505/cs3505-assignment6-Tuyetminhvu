@@ -1,11 +1,19 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "simongame.h"
+#include<QMovie>
 
 MainWindow::MainWindow(SimonGame *simonGame, QWidget *parent)
     : QMainWindow(parent), ui(new Ui::MainWindow)
-    , simonGame(simonGame)
+    , simonGame(simonGame),gameOverMovie(nullptr)
 {
     ui->setupUi(this);
+
+   gameOverMovie = new QMovie(":/gameover.gif");
+
+    ui->gameOverLabel->setMovie(gameOverMovie);
+    ui->gameOverLabel->hide();   // hide at start
+
     // startButton connect to startGame()
     connect(ui->startButton, &QPushButton::clicked, simonGame, &SimonGame::startGame);
 
@@ -20,11 +28,17 @@ MainWindow::MainWindow(SimonGame *simonGame, QWidget *parent)
 
     connect(simonGame, &SimonGame::enableStartButton, this, &MainWindow::enableStartButton);
 
-    // flash button1 which should be red
+    // flash button1 which should be blue
     connect(simonGame, &SimonGame::flashButton1, this, &MainWindow::flashBlue);
 
-    // flash button2 which should be blue
+    // flash button2 which should be red
     connect(simonGame, &SimonGame::flashButton2, this, &MainWindow::flashRed);
+
+    //Game over gif 
+    connect(simonGame, &SimonGame::gameOverSignal,this, &MainWindow::showGameOverGif);
+
+    //Color button should be hide
+    connect(simonGame, &SimonGame::gameOverHideColorButtons,this, &MainWindow::showColorButtons);
 }
 
 MainWindow::~MainWindow()
@@ -42,8 +56,33 @@ void MainWindow::enableColorButtons(bool isEnabled){
     ui->blueButton->setEnabled(isEnabled);
 }
 
+void MainWindow::showColorButtons(bool isShow){
+    if(isShow){
+        ui->redButton->show();
+        ui->blueButton->show();
+    }
+
+    else{
+        ui->redButton->hide();
+        ui->blueButton->hide();
+    }
+}
+
 void MainWindow::enableStartButton(bool isEnabled){
     ui->startButton->setEnabled(isEnabled);
+}
+
+void MainWindow::showGameOverGif(bool isShow)
+{
+    if(isShow){
+        ui->gameOverLabel->show();
+        gameOverMovie->start();
+    }
+
+    else{
+        ui->gameOverLabel->hide();
+        gameOverMovie->stop();
+    }
 }
 
 void MainWindow::flashRed(int timer){
@@ -97,11 +136,5 @@ void MainWindow::flashBlue(int timer){
             "font: 900 25pt 'Phosphate';"
             );
     });
-}
-
-
-void MainWindow::on_redButton_clicked()
-{
-
 }
 

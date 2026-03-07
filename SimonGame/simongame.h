@@ -38,6 +38,8 @@ signals:
     void flashButton2(int);
     void enablePlayerButtons(bool);
     void enableStartButton(bool);
+    void gameOverSignal(bool);
+    void gameOverHideColorButtons(bool);
 
 private:
     /**

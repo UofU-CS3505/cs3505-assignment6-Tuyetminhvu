@@ -18,21 +18,17 @@ public:
     MainWindow(SimonGame *simonGame, QWidget *parent = nullptr);
     ~MainWindow();
 
-<<<<<<< HEAD
-private slots:
-    void on_blueButton_clicked();
-
-    void on_redButton_clicked();
-=======
 public slots:
     void enableStartButton(bool);
     void enableColorButtons(bool);
     void flashRed(int timer);
     void flashBlue(int timer);
->>>>>>> fab7a271895d2c8054e5b4ebad20cf9aa94cf265
+    void showGameOverGif(bool show);
+    void showColorButtons(bool show);
 
 private:
     Ui::MainWindow *ui;
     SimonGame *simonGame;
+    QMovie *gameOverMovie;
 };
 #endif // MAINWINDOW_H

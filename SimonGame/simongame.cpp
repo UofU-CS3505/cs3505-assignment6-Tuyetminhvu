@@ -7,6 +7,9 @@ SimonGame::SimonGame(QObject *parent)
 void SimonGame::startGame(){
     emit enablePlayerButtons(false);
     emit enableStartButton(false);
+    emit gameOverSignal(false);
+    emit gameOverHideColorButtons(true);
+
     numberSequence.clear();
     sequenceIndex = 0;
     numberSequence.append(getRandomNumber());
@@ -16,6 +19,8 @@ void SimonGame::startGame(){
 void SimonGame::gameOver(){
     emit enablePlayerButtons(false);
     emit enableStartButton(true);
+    emit gameOverSignal(true);
+    emit gameOverHideColorButtons(false);
 }
 
 // TODO: SHOULD DISABLE BUTTONS AFTER FINAL BUTTON IN SEQUENCE IS PRESSED,
@@ -27,7 +32,6 @@ void SimonGame::button1Pressed(){
 void SimonGame::button2Pressed(){
     handleButtonPressed(2);
 }
-
 void SimonGame::handleButtonPressed(int button){
     if (numberSequence.isEmpty()) return;
 

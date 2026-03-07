@@ -514,7 +514,7 @@ font: 900 25pt &quot;Phosphate&quot;;
      <string>RED</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label">
+   <widget class="QLabel" name="gameLevel">
     <property name="geometry">
      <rect>
       <x>120</x>
@@ -530,7 +530,7 @@ font: 900 25pt &quot;Phosphate&quot;;
      <string>LEVEL:</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_2">
+   <widget class="QLabel" name="gameScore">
     <property name="geometry">
      <rect>
       <x>120</x>
@@ -570,13 +570,26 @@ font: 900 25pt &quot;Phosphate&quot;;
     <property name="geometry">
      <rect>
       <x>230</x>
-      <y>370</y>
+      <y>400</y>
       <width>231</width>
       <height>51</height>
      </rect>
     </property>
     <property name="text">
      <string>Start Game</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="gameOverLabel">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>220</y>
+      <width>621</width>
+      <height>111</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
     </property>
    </widget>
   </widget>
@@ -586,7 +599,7 @@ font: 900 25pt &quot;Phosphate&quot;;
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>21</height>
+     <height>33</height>
     </rect>
    </property>
   </widget>
