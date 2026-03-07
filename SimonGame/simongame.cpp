@@ -30,10 +30,12 @@ void SimonGame::gameOver(){
 
 void SimonGame::button1Pressed(){
     handleButtonPressed(1);
+    emit flashButton1(50);
 }
 
 void SimonGame::button2Pressed(){
     handleButtonPressed(2);
+    emit flashButton2(50);
 }
 
 void SimonGame::handleButtonPressed(int button){
