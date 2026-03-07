@@ -29,6 +29,8 @@ void SimonGame::button2Pressed(){
 }
 
 void SimonGame::handleButtonPressed(int button){
+    if (numberSequence.isEmpty()) return;
+
     if (numberSequence[sequenceIndex] == button){
         sequenceIndex++;
 
@@ -62,9 +64,9 @@ void SimonGame::playSequence(int index)
     int timer = 1000 - (numberSequence.size() * 20 );
 
     if (numberSequence[index] == 1)
-        emit flashButton1(timer * 0.9);
+        emit flashButton1(timer * 0.8);
     else
-        emit flashButton2(timer * 0.9);
+        emit flashButton2(timer * 0.8);
 
 
     QTimer::singleShot(timer, this, [=]() {playSequence(index + 1);});
