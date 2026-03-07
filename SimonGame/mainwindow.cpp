@@ -18,3 +18,9 @@ void MainWindow::on_blueButton_clicked()
 
 }
 
+
+void MainWindow::on_redButton_clicked()
+{
+
+}
+

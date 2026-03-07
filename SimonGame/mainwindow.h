@@ -18,6 +18,11 @@ public:
     MainWindow(SimonGame *simonGame, QWidget *parent = nullptr);
     ~MainWindow();
 
+private slots:
+    void on_blueButton_clicked();
+
+    void on_redButton_clicked();
+
 private:
     Ui::MainWindow *ui;
     SimonGame *simonGame;
