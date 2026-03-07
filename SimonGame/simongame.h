@@ -47,6 +47,13 @@ private:
     QVector<int> numberSequence;
 
     /**
+     * @brief gameOver
+     * Resets game and emits a singal to disable color buttons
+     * , but enable start button
+     */
+    void gameOver();
+
+    /**
      * @brief sequenceIndex
      * Keeps track of what index the buttonSequence is
      */

@@ -22,10 +22,10 @@ MainWindow::MainWindow(SimonGame *simonGame, QWidget *parent)
     connect(simonGame, &SimonGame::enableButtons, this, &MainWindow::enableColorButtons);
 
     // flash button1 which should be red
-    connect(simonGame, &SimonGame::flashButton1, this, &MainWindow::flashRed);
+    connect(simonGame, &SimonGame::flashButton1, this, &MainWindow::flashBlue);
 
     // flash button2 which should be blue
-    connect(simonGame, &SimonGame::flashButton2, this, &MainWindow::flashBlue);
+    connect(simonGame, &SimonGame::flashButton2, this, &MainWindow::flashRed);
 }
 
 MainWindow::~MainWindow()
@@ -49,10 +49,55 @@ void MainWindow::enableColorButtons(){
 }
 
 void MainWindow::flashRed(){
-    //set red button to a bright red or change background image
+    // Set to bright red
+    ui->redButton->setStyleSheet(
+        "background-color: rgb(255, 50, 50);"
+        "border-style: outset;"
+        "border-width: 2px;"
+        "border-radius: 10px;"
+        "border-color: black;"
+        "color: white;"
+        "font: 900 25pt 'Phosphate';"
+        );
+
+    // Schedule the button to return to normal dark red
+    QTimer::singleShot(300, this, [=]() {
+        ui->redButton->setStyleSheet(
+            "background-color: rgb(191, 9, 0);"
+            "border-style: outset;"
+            "border-width: 2px;"
+            "border-radius: 10px;"
+            "border-color: black;"
+            "color: white;"
+            "font: 900 25pt 'Phosphate';"
+            );
+    });
 }
 
+
 void MainWindow::flashBlue(){
-    //set blue button to a bright blue
+    // Set to bright blue
+    ui->blueButton->setStyleSheet(
+        "background-color: rgb(100, 100, 255);" // Bright flashing blue
+        "border-style: outset;"
+        "border-width: 2px;"
+        "border-radius: 10px;"
+        "border-color: black;"
+        "color: white;"
+        "font: 900 25pt 'Phosphate';"
+        );
+
+    // Schedule the button to return to normal blue
+    QTimer::singleShot(300, this, [=]() {
+        ui->blueButton->setStyleSheet(
+            "background-color: blue;" // Your original blue
+            "border-style: outset;"
+            "border-width: 2px;"
+            "border-radius: 10px;"
+            "border-color: black;"
+            "color: white;"
+            "font: 900 25pt 'Phosphate';"
+            );
+    });
 }
 
