@@ -29,6 +29,7 @@ public slots:
     void currentLevelLabel(int level);
     void currentScoreLabel(int score);
     void showUserTurnGif(bool show);
+    void updateProgressBar(int value);
 
 private:
     Ui::MainWindow *ui;

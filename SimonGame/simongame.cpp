@@ -14,11 +14,16 @@ void SimonGame::startGame(){
     numberSequence.clear();
     sequenceIndex = 0;
     score = 0;
+    percent = 0;
+
     emit scoreUpdated(score);
+    emit progressUpdate(percent);
+
     numberSequence.append(getRandomNumber());
     updateGameLevel();
     playSequence(0);
 }
+
 
 void SimonGame::gameOver(){
     emit enablePlayerButtons(false);
@@ -43,21 +48,25 @@ void SimonGame::handleButtonPressed(int button){
 
     if (numberSequence[sequenceIndex] == button){
         score += 10;
+
+        percent = ((sequenceIndex + 1) * 100) / numberSequence.size();
+
         emit scoreUpdated(score);
+        emit progressUpdate(percent);
 
         sequenceIndex++;
         updateGameScore();
 
-        // When the final element in the sequence is reached,
-        // reset index, add new element, and play back the sequence.
         if (sequenceIndex >= numberSequence.size()){
             emit enablePlayerButtons(false);
             emit userTurnSignal(false);
+
             sequenceIndex = 0;
 
             numberSequence.append(getRandomNumber());
             updateGameLevel();
-            QTimer::singleShot(2000, this, [=]() {playSequence(0);});
+
+            QTimer::singleShot(2000, this, [=]() { playSequence(0); });
         }
     } else {
         gameOver();
@@ -72,6 +81,8 @@ void SimonGame::playSequence(int index)
 {
     // Base case, return when last index is reached
     if (index >= numberSequence.size()){
+        percent = 0;
+        emit progressUpdate(percent);
         emit enablePlayerButtons(true);
         emit userTurnSignal(true);
         return;
@@ -98,4 +109,10 @@ int SimonGame::updateGameLevel(){
 int SimonGame::updateGameScore(){
     emit scoreUpdated(score);
     return score;
+}
+
+int SimonGame::updateGameProgress(){
+    emit progressUpdate(percent);
+    return percent;
+
 }

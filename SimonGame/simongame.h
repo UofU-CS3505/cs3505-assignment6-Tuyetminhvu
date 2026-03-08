@@ -43,6 +43,7 @@ signals:
     void levelUpdated(int level);
     void scoreUpdated(int score);
     void userTurnSignal(bool);
+    void progressUpdate(int percent);
 
 private:
     /**
@@ -106,6 +107,10 @@ private:
      * @brief score
      */
     int score = 0;
+
+    int updateGameProgress();
+
+    int percent = 0;
 
 };
 

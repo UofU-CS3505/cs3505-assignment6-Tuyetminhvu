@@ -11,25 +11,35 @@ MainWindow::MainWindow(SimonGame *simonGame, QWidget *parent)
 {
     ui->setupUi(this);
 
+    //Gif pop up when game is over
    gameOverMovie = new QMovie(":/gameover.gif");
 
     ui->gameOverLabel->setMovie(gameOverMovie);
+
     ui->gameOverLabel->hide();   // hide at start
 
+    //Gif pop up when user turn to play
     userTurnMovie = new QMovie(":/yourturn.gif");
+    connect(userTurnMovie, &QMovie::finished, userTurnMovie, &QMovie::start);
+
 
     ui->userTurnLabel->setMovie(userTurnMovie);
     ui->userTurnLabel->hide();   // hide at start
 
+    //Gif pop up when user lose
     loseGameMovie = new QMovie(":/lose.gif");
+    connect(loseGameMovie, &QMovie::finished, loseGameMovie, &QMovie::start);
 
     ui->loseGameLabel->setMovie(loseGameMovie);
     ui->loseGameLabel->hide();   // hide at start
 
+    //Back ground music
     bgMusic = new QMediaPlayer(this);
     QAudioOutput* audioOutput = new QAudioOutput(this);
     bgMusic->setAudioOutput(audioOutput);
     bgMusic->setSource(QUrl("qrc:/bgmusic.mp3"));
+
+    //Set loops for the music to play infinitie
     bgMusic->setLoops(QMediaPlayer::Infinite);
     bgMusic->play();
 
@@ -67,6 +77,9 @@ MainWindow::MainWindow(SimonGame *simonGame, QWidget *parent)
 
     //update the score
     connect(simonGame, &SimonGame::scoreUpdated, this, &MainWindow::currentScoreLabel);
+
+    //Update the progress bar
+    connect(simonGame, &SimonGame::progressUpdate, this, &MainWindow::updateProgressBar);
 }
 
 MainWindow::~MainWindow()
@@ -184,5 +197,10 @@ void MainWindow::flashBlue(int timer){
             "font: 900 25pt 'Phosphate';"
             );
     });
+}
+
+void MainWindow::updateProgressBar(int value)
+{
+    ui->progressBar->setValue(value);
 }
 
