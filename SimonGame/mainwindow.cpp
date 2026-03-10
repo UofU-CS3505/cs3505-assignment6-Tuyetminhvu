@@ -176,7 +176,7 @@ void MainWindow::flashRed(int timer){
 void MainWindow::flashBlue(int timer){
     // Set to bright blue
     ui->blueButton->setStyleSheet(
-        "background-color: rgb(100, 100, 255);" // Bright flashing blue
+        "background-color: rgb(100, 100, 255);"
         "border-style: outset;"
         "border-width: 2px;"
         "border-radius: 10px;"
@@ -188,7 +188,7 @@ void MainWindow::flashBlue(int timer){
     // Schedule the button to return to normal blue
     QTimer::singleShot(timer, this, [=]() {
         ui->blueButton->setStyleSheet(
-            "background-color: blue;" // Your original blue
+            "background-color: blue;" // original blue
             "border-style: outset;"
             "border-width: 2px;"
             "border-radius: 10px;"

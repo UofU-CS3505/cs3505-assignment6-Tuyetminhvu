@@ -21,7 +21,7 @@ void SimonGame::startGame(){
 
     numberSequence.append(getRandomNumber());
     updateGameLevel();
-    playSequence(0);
+    QTimer::singleShot(800, this, [=]() { playSequence(0); });
 }
 
 
