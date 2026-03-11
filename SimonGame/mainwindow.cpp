@@ -1,3 +1,11 @@
+/**
+ * This class serves as the View (UI) for the Simon Game.
+ * It handles all visual updates, animations, and user interactions
+ * by connecting to the SimonGame model signals.
+ * @author Fernando Lemus Guillen & Tuyet Minh Vu
+ * @date 2026-03-10
+ */
+
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "simongame.h"

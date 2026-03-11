@@ -1,3 +1,11 @@
+/**
+ * This class serves as the Model (Logic) for the Simon Game.
+ * It manages the button sequences, verifies user input, tracks scoring,
+ * and emits signals to update the UI (View).
+ * @author Fernando Lemus Guillen & Tuyet Minh Vu
+ * @date 2026-03-10
+ */
+
 #include "simongame.h"
 
 SimonGame::SimonGame(QObject *parent)
@@ -35,12 +43,12 @@ void SimonGame::gameOver(){
 
 void SimonGame::button1Pressed(){
     handleButtonPressed(1);
-    emit flashButton1(50);
+    emit flashButton1(75);
 }
 
 void SimonGame::button2Pressed(){
     handleButtonPressed(2);
-    emit flashButton2(50);
+    emit flashButton2(75);
 }
 
 void SimonGame::handleButtonPressed(int button){
@@ -57,6 +65,7 @@ void SimonGame::handleButtonPressed(int button){
         sequenceIndex++;
         updateGameScore();
 
+        // When player gets to last element in the sequence
         if (sequenceIndex >= numberSequence.size()){
             emit enablePlayerButtons(false);
             emit userTurnSignal(false);
@@ -89,7 +98,8 @@ void SimonGame::playSequence(int index)
     }
 
     // length of time to flash and time for singleShot, increases with size of sequence
-    int timer = 1000 - (numberSequence.size() * 20 );
+    int timer = 1000 - (numberSequence.size() * 50 );
+    if (timer < 200) timer = 200;   // Dont allow the timer to get too small
 
     if (numberSequence[index] == 1)
         emit flashButton1(timer * 0.8);

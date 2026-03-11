@@ -4,5 +4,6 @@
         <file>yourturn.gif</file>
         <file>lose.gif</file>
         <file>bgmusic.mp3</file>
+        <file>gameBackground.jpg</file>
     </qresource>
 </RCC>
