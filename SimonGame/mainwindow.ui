@@ -696,14 +696,17 @@ QProgressBar::chunk {
       <widget class="QLabel" name="userTurnLabel">
        <property name="geometry">
         <rect>
-         <x>310</x>
-         <y>10</y>
-         <width>241</width>
-         <height>161</height>
+         <x>350</x>
+         <y>20</y>
+         <width>181</width>
+         <height>141</height>
         </rect>
        </property>
        <property name="text">
         <string/>
+       </property>
+       <property name="scaledContents">
+        <bool>true</bool>
        </property>
       </widget>
       <widget class="QWidget" name="layoutWidget">
