@@ -3,7 +3,7 @@
  * Github usernames: fernandolemus051 & Tuyetminhvu
  * Github repo URL: github.com/UofU-CS3505/cs3505-assignment6-Tuyetminhvu
  * Creative elements:
- * 1. Although not able to hear in the videw recording, we added background music into the game
+ * 1. We added background music to liven it up a bit
  * 2. Fun GIFs to let a player know when its their turn and when they lose.
  * 3. Background image to make it feel 'polished' and engaging.
  */
